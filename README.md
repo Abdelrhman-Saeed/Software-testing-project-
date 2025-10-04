@@ -1,2 +1,2 @@
-# Software-testing-project-
-testing Parabank + restful booker
+# Software-testing-project
+Testing Parabank + Restful booker
