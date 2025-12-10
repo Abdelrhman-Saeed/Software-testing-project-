@@ -1,0 +1,180 @@
+{
+	"info": {
+		"_postman_id": "d04ac705-556d-423e-8a01-45f9313c10ab",
+		"name": "Get Booking",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "50518683",
+		"_collection_link": "https://abdelrhmansaeedelbadry-6733195.postman.co/workspace/Abdelrhman-saeed's-Team's-Works~568cf15b-4d4e-4dc1-8db2-3bb7facad7bc/collection/50518683-d04ac705-556d-423e-8a01-45f9313c10ab?action=share&source=collection_link&creator=50518683"
+	},
+	"item": [
+		{
+			"name": "Get Booking valid",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response contains firstname and lastname\", function () {\r",
+							"    let json = pm.response.json();\r",
+							"    pm.expect(json).to.have.property(\"firstname\");\r",
+							"    pm.expect(json).to.have.property(\"lastname\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Booking dates exists\", function () {\r",
+							"    let json = pm.response.json();\r",
+							"    pm.expect(json.bookingdates).to.have.property(\"checkin\");\r",
+							"    pm.expect(json.bookingdates).to.have.property(\"checkout\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://restful-booker.herokuapp.com/booking/2",
+					"protocol": "https",
+					"host": [
+						"restful-booker",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"booking",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Booking invalid id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"    pm.response.to.have.status(404);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://restful-booker.herokuapp.com/booking/99999999999999",
+					"protocol": "https",
+					"host": [
+						"restful-booker",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"booking",
+						"99999999999999"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Booking incorrect URL",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"    pm.response.to.have.status(404);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://restful-booker.herokuapp.com/bookingGGG/10",
+					"protocol": "https",
+					"host": [
+						"restful-booker",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"bookingGGG",
+						"10"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Booking incorrect HTTP",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 405\", function () {\r",
+							"    pm.response.to.have.status(405);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "https://restful-booker.herokuapp.com/booking/10",
+					"protocol": "https",
+					"host": [
+						"restful-booker",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"booking",
+						"10"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

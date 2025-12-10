@@ -1,0 +1,279 @@
+{
+	"info": {
+		"_postman_id": "65d30f0a-68df-4c44-97ea-a04b62a616c6",
+		"name": "Get Booking Id",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "50518683",
+		"_collection_link": "https://abdelrhmansaeedelbadry-6733195.postman.co/workspace/Abdelrhman-saeed's-Team's-Works~568cf15b-4d4e-4dc1-8db2-3bb7facad7bc/collection/50518683-65d30f0a-68df-4c44-97ea-a04b62a616c6?action=share&source=collection_link&creator=50518683"
+	},
+	"item": [
+		{
+			"name": "Get Booking Id valid",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response is an array\", function () {\r",
+							"    let json = pm.response.json();\r",
+							"    pm.expect(json).to.be.an(\"array\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Each item contains bookingid\", function () {\r",
+							"    let json = pm.response.json();\r",
+							"    if (json.length > 0) {\r",
+							"        pm.expect(json[0]).to.have.property(\"bookingid\");\r",
+							"    }\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://restful-booker.herokuapp.com/booking",
+					"protocol": "https",
+					"host": [
+						"restful-booker",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"booking"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Booking Id incorrect URL",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"    pm.response.to.have.status(404);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://restful-booker.herokuapp.com/bookingGGGGGG",
+					"protocol": "https",
+					"host": [
+						"restful-booker",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"bookingGGGGGG"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Booking Id incorrect HTTP",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 405\", function () {\r",
+							"    pm.response.to.have.status(405);\r",
+							"});\r",
+							"\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "https://restful-booker.herokuapp.com/booking",
+					"protocol": "https",
+					"host": [
+						"restful-booker",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"booking"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Booking Id Filter First name",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status 200\", () => pm.response.to.have.status(200));\r",
+							"pm.test(\"Response is array\", () => pm.expect(pm.response.json()).to.be.an(\"array\"));\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://restful-booker.herokuapp.com/booking?firstname=Susan",
+					"protocol": "https",
+					"host": [
+						"restful-booker",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"booking"
+					],
+					"query": [
+						{
+							"key": "firstname",
+							"value": "Susan"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Booking Id Filter invalid First name",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status 200\", () => pm.response.to.have.status(200));\r",
+							"\r",
+							"pm.test(\"Response is empty array\", () => {\r",
+							"    let data = pm.response.json();\r",
+							"    pm.expect(data).to.be.an(\"array\").that.is.empty;\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://restful-booker.herokuapp.com/booking?firstname=THISDOESNOTEXIST",
+					"protocol": "https",
+					"host": [
+						"restful-booker",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"booking"
+					],
+					"query": [
+						{
+							"key": "firstname",
+							"value": "THISDOESNOTEXIST"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Booking Id Filter Checkin&out",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Status code should be 200\r",
+							"pm.test(\"Status code is 200\", () => {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"// Response must be an array\r",
+							"pm.test(\"Response is an array\", () => {\r",
+							"    pm.expect(pm.response.json()).to.be.an(\"array\");\r",
+							"});\r",
+							"\r",
+							"// Every item in array should have bookingid\r",
+							"pm.test(\"All items contain bookingid\", () => {\r",
+							"    let data = pm.response.json();\r",
+							"    data.forEach(item => {\r",
+							"        pm.expect(item).to.have.property(\"bookingid\");\r",
+							"    });\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://restful-booker.herokuapp.com/booking?checkin=2017-01-05&checkout=2020-07-03",
+					"protocol": "https",
+					"host": [
+						"restful-booker",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"booking"
+					],
+					"query": [
+						{
+							"key": "checkin",
+							"value": "2017-01-05"
+						},
+						{
+							"key": "checkout",
+							"value": "2020-07-03"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
